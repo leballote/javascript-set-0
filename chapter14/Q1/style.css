@@ -1,0 +1,27 @@
+:root {
+  box-sizing: border-box;
+}
+
+*, 
+*::before, 
+*::after {
+  box-sizing: inherit;
+}
+
+.grid {
+  --n-cols: 2;
+  display: flex;
+  margin-top: 0.4em;
+  flex-flow: wrap row;
+}
+
+/* .cell + .cell {
+  border-left: 0;
+} */
+
+.cell {
+  border: 2px solid black;
+  min-height: 200px;
+  flex: calc(100% / var(--n-cols));
+  border-collapse: collapse;
+}

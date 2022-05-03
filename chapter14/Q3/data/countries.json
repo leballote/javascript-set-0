@@ -1,0 +1,18 @@
+{
+    "france":{
+       "country":"France",
+       "text":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam blanditiis, fuga, voluptates molestiae corrupti cupiditate soluta voluptatum corporis, eos atque asperiores et dicta ratione harum mollitia cumque provident aspernatur. Adipisci, quos facilis? Quia dolores illo quos, repellendus incidunt eius cupiditate maxime est consequatur autem recusandae. Voluptate quia nesciunt eligendi molestias.\n",
+       "imagePath":"./images/france.jpg"
+    },
+    "mexico":{
+       "country":"Mexico",
+       "text":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut dicta quasi temporibus consectetur possimus repellat tempore aspernatur aliquid accusantium, delectus molestiae officia sed magnam sapiente ex dolor voluptatibus. Id, quae.\nLorem ipsum dolor sit amet consectetur, adipisicing elit. Ut dicta quasi temporibus consectetur possimus repellat tempore aspernatur aliquid accusantium, delectus molestiae officia sed magnam sapiente ex dolor voluptatibus. Id, quae.",
+       "imagePath":"./images/mexico.jpg"
+    },
+    "china":{
+       "country":"China",
+       "text":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde iste nam, ratione sunt doloribus, laborum aut quod impedit, ipsam voluptas voluptatibus sit quisquam id placeat aliquid quia adipisci cupiditate itaque doloremque eos corrupti minima voluptates harum fugit. Tenetur commodi quos dolorum asperiores, repellat eligendi voluptas minima consequatur similique molestiae ab reprehenderit quo doloremque cupiditate, aspernatur optio cum possimus nostrum id expedita quasi amet! Placeat temporibus illum amet mollitia facere ea eaque dolorum recusandae pariatur, aut rerum qui nobis totam cum iusto impedit excepturi sequi earum possimus aperiam exercitationem laudantium voluptate consectetur ab? Molestias sequi alias tempora cum, et inventore harum?",
+       "imagePath":"./images/china.jpg"
+    }
+}
+ 

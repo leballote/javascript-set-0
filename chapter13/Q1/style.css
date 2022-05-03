@@ -1,0 +1,37 @@
+:root {
+  box-sizing: border-box;
+  font-size: 1.2em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.grid {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 1.4rem;
+  border: solid 1px black;
+}
+
+.grid > .col {
+  flex: 20%;
+  border-left: black 1px solid;
+}
+
+.grid > .col:first-child {
+  border-left: none;
+}
+
+.grid .cell {
+  border-top: solid black 1px;
+}
+
+.grid .cell:first-child {
+  border-top: none;
+}
+      
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Travel to your dreams!</h1>
+    <ul id="countries" class="countries">
+    </ul>
+  </main>
+
+  <div id="templates">
+    <template id="template-list-item">
+      <li>
+        <figure class="item-figure">
+          <img src="" alt="" class="item-side-image">
+        </figure>
+        <div class="item-body">
+          <h2 class="item-title"></h2>
+          <p class="item-text"></p>
+        </div>
+      </li>
+    </template>
+  </div>
+
+  <template id="template-item-full">
+    <img src="" class="item-side-image main-article-image" id="item-side-image">
+    <div class="item-body">
+      <h2 class="item-title" id="item-title"></h2>
+      <p id="item-text" class="item-text"></p>
+    </div>
+    <p><a href="" id="go-back" class="go-back">Go back</a></p>
+    
+  </template>
+
+  <script src="data/countries.json"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
