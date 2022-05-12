@@ -3,13 +3,12 @@ function distance(x1, y1, z1, x2, y2, z2) {
         return distance(...x1, ...y1);
     }
     if (arguments.length === 4) {
-        x2 = z1;
         y2 = x2;
+        x2 = z1;
         z1 = 0;
         z2 = 0;
         return distance(x1, y1, z1, x2, y2, z2);
     } else if (arguments.length < 6) {
-        console.log(arguments.length);
         throw new Error("Incompatible point data");
     }
     return Math.sqrt( (x1 - x2)**2 + (y1 - y2)**2 + (z1 - z2)**2 );

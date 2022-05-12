@@ -6,11 +6,11 @@ function aux(el) {
     } else return typeof el; 
 }
 function dataType(...args) {
-    out = "";
+    const out = [];
     for (let el of args) {
-        out += aux(el) + ", ";
+        out.push(aux(el));
     }
-    console.log(out.slice(0, -2));
+    console.log(out.join(", "));
 }
 
 dataType (1, 6.2831, "pi*2", [function(){}, 1], {}, function () {}); 
