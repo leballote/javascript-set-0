@@ -1,12 +1,16 @@
 class Image {
     constructor(data, height, width, name) {
-        this.data = data;
         this.width = width;
         this.height = height;
         this.name = name;
+        if (data.length != width*height) throw new Error("Data can't be arranged within the specified shape");
+        this.data = data;
     }
 
     pixelData(row, col) {
+        if (row >= width || col >= height ) {
+            throw new Error("Out of bounds");
+        }
         return this.data[this.width*row + col];
     }
 }

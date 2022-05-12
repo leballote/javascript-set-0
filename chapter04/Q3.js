@@ -9,8 +9,7 @@ class MyNumber {
 
     set number(num){
         if ( typeof num !== "number") {
-            console.error("You cannot assign non-number variables to MyNumber.number");
-            return;
+            throw new Error ("You cannot assign non-number variables to MyNumber.number");
         }
         this._number = num;
     }
@@ -20,6 +19,6 @@ class MyNumber {
     }
 }
 
-let mynum = new MyNumber("10");
+let mynum = new MyNumber(10);
 
 console.log(mynum);

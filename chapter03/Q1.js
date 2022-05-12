@@ -1,5 +1,5 @@
 function mul(a, b) {
-    ans = a*b;
+    const ans = a*b;
     return ans.toString(13);
 }
 
