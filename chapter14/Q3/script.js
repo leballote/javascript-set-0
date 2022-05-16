@@ -1,4 +1,5 @@
-let body = document.getElementsByTagName("body")[0];
+//I totally forgot that document.body existed
+let body = document.body;
 let bodyParent = body.parentElement;
 let firstRendered = false;
 

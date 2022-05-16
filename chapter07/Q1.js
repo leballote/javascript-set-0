@@ -1,14 +1,14 @@
 function fromHexToRGB(hex) {
-    //it should work with or without the #, upper and lowercase
-    // I could also make it work with more than one "#", but I think it is more secure if not 
-    //Also, this was way easier without regex, but the hits suggested it 
-    out = hex.toLowerCase()
-        .replace("#", "") 
-        .replace(/([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})/g, "($1, $2, $3)")
-        .replaceAll(/([a-f0-9]){2}/g, str => parseInt(str, 16));
-
-    out = "rgb " + out;
-    return out;
+    const reg = /^\s*#?(?<r>[a-f0-9]{2})(?<g>[a-f0-9]{2})(?<b>[a-f0-9]{2})\s*$/i;
+    const match = hex.match(reg);
+    if (match) {
+        const {r, g, b} = match.groups;
+        return `rgb (${parseInt(r, 16)}, ${parseInt(g, 16)}, ${parseInt(b, 16)})`;
+    } else {
+        throw new Error("Not valid input");
+    }
 }
 
 console.log(fromHexToRGB("#3020ff"));
+console.log(fromHexToRGB("3020ff "));
+//console.log(fromHexToRGB("3020#ffX")); //error

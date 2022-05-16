@@ -11,27 +11,25 @@
 }
 
 .grid {
-  display: flex;
-  flex-flow: row wrap;
   font-size: 1.4rem;
   border: solid 1px black;
 }
 
-.grid > .col {
-  flex: 20%;
-  border-left: black 1px solid;
+.row {
+  display: flex;
+  flex-flow: row wrap;
 }
 
-.grid > .col:first-child {
-  border-left: none;
+.row ~ .row {
+  border-top: 1px solid black;
 }
 
-.grid .cell {
-  border-top: solid black 1px;
+.cell {
+  flex: calc(1/5);
 }
 
-.grid .cell:first-child {
-  border-top: none;
+.cell ~ .cell {
+  border-left: 1px solid black;
 }
+
       
-
