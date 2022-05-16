@@ -224,11 +224,11 @@ console.log("user to find: ", eq);
 console.log(tech.findUser(eq)); // 3, 0
 
 for (i = 80; i >= 50; i--) {
-    tech.findUser(i);
+    console.log(tech.findUser(i));
 }
 
 for (i = 30; i >= 5; i--) {
-    tech.findEquipment(i);
+    console.log(tech.findEquipment(i));
 }
 
 // console.log(tech.userLocations); // the memoized users
