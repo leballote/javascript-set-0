@@ -66,7 +66,7 @@ class Building {
     }
 
     showStructure(verbose=true) {
-        const floors = this.getFloors(); 
+        const floors = this.getFloors();
         for (let i = 0; i < floors.length; i++) {
             console.log(`Floor ${i}:`);
             const floor = floors[i];
@@ -112,18 +112,19 @@ class TechSupport {
         if (typeof userToFind != "number") userToFind = userToFind.id;
         if (memo && userToFind in this.userLocations) return this.userLocations[userToFind]; 
 
-        let floorIdx = memo ? this.lastSearchedFloorUser : 0; 
+        let floorIdx = memo ? this.lastSearchedFloorUser : 0;
         let roomIdx = memo ? this.lastSearchedRoomUser : 0;
 
         let floor = this.building.floors[floorIdx];
 
         //finish the memoized search for the last searched floor
-        for (let j = roomIdx + 1; j < floor.rooms.length; j++) {
+        for (let j = roomIdx; j < floor.rooms.length; j++) {
             const room = floor.rooms[j];
             for (const user of room.users) {
                 this.userLocations[user.id] = [floorIdx, j];
                 if (user.id === userToFind) {
-                    return [floorIdx, j]; 
+                    this.lastSearchedRoomUser = j;
+                    return [floorIdx, j];
                 }
             }
         }
@@ -136,29 +137,33 @@ class TechSupport {
                 for (const user of room.users) {
                     this.userLocations[user.id] = [i, j];
                     if (userToFind === user.id) {
+                        this.lastSearchedFloorUser = i;
+                        this.lastSearchedRoomUser = i;
                         return [i, j];
                     }
                 } 
             }
         }
+        return [-1, -1];
     }
 
     findEquipment(eqToFind, memo=true) {
         if (typeof eqToFind != "number") eqToFind = eqToFind.id;
         if (memo && eqToFind in this.equipmentLocations) return this.equipmentLocations[eqToFind]; 
 
-        let floorIdx = memo ? this.lastSearchedFloorEq : 0; 
+        let floorIdx = memo ? this.lastSearchedFloorEq : 0;
         let roomIdx = memo ? this.lastSearchedRoomEq : 0;
 
         let floor = this.building.floors[floorIdx];
 
         //finish the memoized search for the last searched floor
-        for (let j = roomIdx + 1; j < floor.rooms.length; j++) {
+        for (let j = roomIdx; j < floor.rooms.length; j++) {
             const room = floor.rooms[j];
             for (const eq of room.equipment) {
                 this.equipmentLocations[eq.id] = [floorIdx, j];
                 if (eq.id === eqToFind) {
-                    return [floorIdx, j]; 
+                    this.lastSearchedRoomEq = j;
+                    return [floorIdx, j];
                 }
             }
         }
@@ -171,15 +176,18 @@ class TechSupport {
                 for (const eq of room.equipment) {
                     this.equipmentLocations[eq.id] = [i, j];
                     if (eqToFind === eq.id) {
+                        this.lastSearchedFloorEq = i;
+                        this.lastSearchedRoomEq = i;
                         return [i, j];
                     }
                 } 
             }
         }
+        return [-1, -1];
     }
 }
 
-function randomInitializeBuilding(noFloors, noRooms, noUsers, noEqipment) {
+function randomInitializeBuilding(noFloors, noRooms, noUsers, noEquipment) {
     let currentUserId = 0;
     let currentEqId = 0;
     const users = [];
@@ -192,14 +200,14 @@ function randomInitializeBuilding(noFloors, noRooms, noUsers, noEqipment) {
         floor.addRoom(new Room());
     }
     for (let i = 0; i < noUsers; i++) {
-        const floor = chooseRandomlyFromArray(building.floors);
+        const floor = chooseRandomlyFromArray(building.floors.filter(floor => floor.rooms.length > 0));
         const room = chooseRandomlyFromArray(floor.rooms);
         const user = new User(currentUserId++);
         room.addUser(user);
         users.push(user);
     }
-    for (let i = 0; i < noEqipment; i++) {
-        const floor = chooseRandomlyFromArray(building.floors);
+    for (let i = 0; i < noEquipment; i++) {
+        const floor = chooseRandomlyFromArray(building.floors.filter(floor => floor.rooms.length > 0));
         const room = chooseRandomlyFromArray(floor.rooms);
         const user = chooseRandomlyFromArray(users); 
         room.addEq(new Equipment(currentEqId++, user));
@@ -220,16 +228,24 @@ const tech = new TechSupport(building);
 
 const eq = building.floors[3].rooms[0].users[0];
 
-console.log("user to find: ", eq);  
-console.log(tech.findUser(eq)); // 3, 0
+// console.log("user to find: ", eq);  
+// console.log(tech.findUser(eq)); // 3, 0
+
 
 for (i = 80; i >= 50; i--) {
-    console.log(tech.findUser(i));
+    let [floor, room] = tech.findUser(i, false); 
+    if (floor === -1) console.log("WARNING: SOMETHING IS WRONG");
+    console.log("user id: ", i, "floor, room: ", floor, room);
 }
 
-for (i = 30; i >= 5; i--) {
-    console.log(tech.findEquipment(i));
+
+for (i = 30; i >= 6; i--) {
+    let [floor, room] = tech.findEquipment(i, false); 
+    if (floor === -1) console.log("WARNING: SOMETHING IS WRONG");
+    console.log("eq id: ", i, "floor, room: ", floor, room);
 }
 
 // console.log(tech.userLocations); // the memoized users
+// console.log(tech.lastSearchedFloorUser);
 // console.log(tech.equipmentLocations); // the memoized equipment
+// console.log(tech);
