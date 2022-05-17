@@ -50,7 +50,7 @@ function firstRenderTemplate1(items) {
         let li = fragment.querySelector("li");
         li.setAttribute("data-key", key);
 
-        let h2 = fragment.querySelector("h2"); 
+        let h2 = fragment.querySelector("h2");
         h2.textContent = country; 
     
         let img = fragment.querySelector("img");
