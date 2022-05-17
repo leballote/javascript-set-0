@@ -15,7 +15,7 @@
 .countries {
   padding: 0;    
   margin: 1em 2em 1em 18%;
-  list-style: none;
+  counter-reset: olcounter;
 }
 
 .countries li {
@@ -24,9 +24,18 @@
   background-color: beige;
   border: solid rgb(73, 66, 66) 2px;
   margin: 1em;
-  /* padding: 0.2em; */
   border-radius: 10px;
   align-items: start;
+  counter-increment: olcounter;
+  position: relative;
+}
+
+.countries li::before {
+  content: counter(olcounter);
+  font-size: 4rem;
+  position: absolute;
+  background-color: white;
+  border-top-left-radius: inherit;
 }
 
 .item-body {
