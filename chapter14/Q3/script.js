@@ -1,9 +1,10 @@
 let temp;
-const template1 = document.getElementById("template-list-item");
+const template1 = document.getElementById("template-homepage");
+const templateListItem = document.getElementById("template-list-item");
 const template2 = document.getElementById("template-item-full");
 const currentPageElement = document.getElementById("current-page");
 const page1 = new DocumentFragment();
-const countriesUl = document.getElementById("countries");
+const countriesUl = template1.querySelector("#countries");
 
 let currentPage;
 let renderedPage1 = false; 
@@ -42,7 +43,7 @@ function renderPage1(countries, shallPushState=true) {
         for (const countryKey in countries) {
             const country = countries[countryKey];
             const {name, text, imagePath} = country;
-            const countryLi = template1.cloneNode(true).content.querySelector("li");
+            const countryLi = templateListItem.cloneNode(true).content.querySelector("li");
             const itemImage = countryLi.querySelector(".item-side-image");
             const itemBody = countryLi.querySelector(".item-body");
             const itemTitle = itemBody.querySelector(".item-title");

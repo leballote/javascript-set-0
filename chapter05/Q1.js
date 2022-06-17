@@ -1,24 +1,22 @@
-//you should only be allowed to create a client through the bank
-// theorethically you can intanciate a client, but It shouldn't have any way to get into the bank manually
+// I don't really see how setiting balance as private is of any help here. 
+// The API is the same in the end, the bank has full control over the clients balance through is setter
+
+
+//I thought the true protection was that the clients variable is private within the bank, so only the bank of a client can access and modify the client's information.
 
 class Client {
-    constructor(accountNo, balance, bank) {
+    #balance;
+    constructor(accountNo, balance) {
         this.accountNo = accountNo;
-        this.balance = balance ?? 0;
-        this.bank = bank;
+        this.#balance = balance ?? 0;
     }
 
-    // for this little app these methods are not useful, but I think they provide a nice layer of abstraction
-    viewBalance() {
-        this.bank.view(this.accountNo);
+    get balance() {
+        return this.#balance;
     }
 
-    deposit(to) {
-        this.bank.deposit(this.accountNo, to);
-    }
-
-    retrieve() {
-        this.bank.retrieve(this.retrieve(this.accountNo));
+    set balance(newBalance) {
+        this.#balance = newBalance;
     }
 }
 
@@ -78,18 +76,22 @@ myBank.newClient();
 myBank.newClient(3000);
 myBank.newClient(5000);
 
+console.group("Viewing initial clients state");
 myBank.view(0);
 myBank.view(1);
 myBank.view(2);
-console.log();
+console.groupEnd();
 
+console.group("Making a deposit of 1000 coins from client 2 to client 0");
 myBank.deposit(2, 0, 1000);
 // myBank.deposit(2, 0); // error it is not passing an amount
 myBank.view(0);
 myBank.view(1);
 myBank.view(2);
-console.log();
+console.groupEnd();
 
+console.group(`Client 0 retrieving 0 coins (checking the corner case).
+Client 1 retrieving 1000 coins`);
 myBank.retrieve(0, 0);
 // myBank.retrieve(0, 1); //error out of balance
 myBank.retrieve(1, 1000);

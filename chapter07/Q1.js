@@ -1,5 +1,6 @@
 function fromHexToRGB(hex) {
-    const reg = /^\s*#?(?<r>[a-f0-9]{2})(?<g>[a-f0-9]{2})(?<b>[a-f0-9]{2})\s*$/i;
+    hex = hex.trim();
+    const reg = /^#?(?<r>[a-f0-9]{2})(?<g>[a-f0-9]{2})(?<b>[a-f0-9]{2})$/i;
     const match = hex.match(reg);
     if (match) {
         const {r, g, b} = match.groups;
